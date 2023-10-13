@@ -56,7 +56,6 @@ import org.ode4j.ode.DMass;
 import org.ode4j.ode.internal.DLCP;
 import org.ode4j.ode.internal.DxMass;
 import org.ode4j.ode.internal.ErrorHandler.dMessageFunction;
-import org.ode4j.ode.internal.ErrorHdl.ErrorJump;
 import org.ode4j.ode.internal.cpp4j.Csetjmp.jmp_buf;
 import org.ode4j.ode.internal.cpp4j.java.CppLongJump;
 import org.ode4j.ode.internal.cpp4j.java.Ref;
@@ -144,7 +143,7 @@ class DemoOde {
 		try {
 			execute(obj, mName, params); 
 			printf(ifnomsg);//ifnomsg ; 
-		} catch (ErrorJump e) {
+		} catch (Exception e) {
 			printf(ifmsg);//ifmsg ; 
 			e.printStackTrace();
 		}
@@ -721,7 +720,6 @@ void testReorthonormalize()
 
 	//void computeMassParams (dMass *m, dReal q[NUMP][3], dReal pm[NUMP])
 	void computeMassParams (DMass m, DVector3[] q, double[] pm) {
-		//TODO assertTrue(q.length==NUMP && q[0].length==3 && pm.length==NUMP);
 		dIASSERT(q.length==NUMP && pm.length==NUMP);
 
 		int i;
@@ -1047,11 +1045,11 @@ void testReorthonormalize()
 			index = 0;
 		}
 
-		@Override
-		protected void finalize() throws Throwable {
-			reset();
-			super.finalize();
-		} 
+		//		@Override
+		//		protected void finalize() throws Throwable {
+		//			reset();
+		//			super.finalize();
+		//		}
 
 		/**
 		 * add a new n*m matrix A to the sequence. the name of the matrix is given
@@ -1193,7 +1191,7 @@ void testReorthonormalize()
 	//extern "C" 
 	void dTestMatrixComparison()
 	{
-		//TODO volatile 
+		//volatile
 		int i;
 		printf ("dTestMatrixComparison()\n");
 		dMessageFunction orig_debug = dGetDebugHandler();
@@ -1230,7 +1228,7 @@ void testReorthonormalize()
 
 		// test broken sequences (with matrix error)
 		dRandSetSeed (seed);
-		//volatile TODO 
+		//volatile
 		int passcount = 0;
 		for (i=1; i<49; i++) {
 //			if (setjmp (jump_buffer) != 0) {
@@ -1299,7 +1297,6 @@ void testReorthonormalize()
 	//	extern "C" void dTestDataStructures();
 	//	extern "C" void dTestMatrixComparison();
 	//	extern "C" void dTestSolveLCP();
-	//TODO
 
 	public static void main(String[] args)
 	{
@@ -1333,7 +1330,7 @@ void testReorthonormalize()
 		testQuaternionMultiply();
 		testRotationFunctions();
 		dTestMatrixComparison();
-		DLCP.dTestSolveLCP();
+		DLCP.dTestSolveLCP(true);
 		//OdeImpl.dTestDataStructures();
 		dCloseODE();
 		return 0;

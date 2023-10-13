@@ -348,7 +348,7 @@ class DemoSpaceStress extends dsFunctions {
 				}
 
 				// move all encapsulated objects so that the center of mass is (0,0,0)
-				DVector3C negC = m.getC().clone().scale(-1);
+				DVector3C negC = m.getC().copy().scale(-1);
 				for (k=0; k<GPB; k++) {
 	                dGeomSetBody(obj[i].geom[k],obj[i].body);
 	                dGeomSetOffsetPosition(obj[i].geom[k],  dpos[k].reAdd(negC));
@@ -543,7 +543,7 @@ class DemoSpaceStress extends dsFunctions {
 		}
 
 		// run simulation
-		dsSimulationLoop (args,352,288,this);
+		dsSimulationLoop (args,640,480,this);
 
 		dJointGroupDestroy (contactgroup);
 		dSpaceDestroy (space);

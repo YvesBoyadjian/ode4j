@@ -23,9 +23,10 @@
  *                                                                       *
  *************************************************************************/
 
+@SuppressWarnings({ "requires-automatic", "requires-transitive-automatic" })
 module org.ode4j
 {
-    requires org.slf4j;
+    requires transitive org.slf4j;
 
     exports org.ode4j.math;
     exports org.ode4j.ode.internal.aabbtree;
@@ -37,6 +38,7 @@ module org.ode4j
     exports org.ode4j.ode.internal.processmem;
     exports org.ode4j.ode.internal.ragdoll;
     exports org.ode4j.ode.internal.stuff;
+    exports org.ode4j.ode.internal.trimesh;
     exports org.ode4j.ode.internal;
     exports org.ode4j.ode.ragdoll;
     exports org.ode4j.ode.threading.task;

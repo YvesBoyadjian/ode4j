@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.ode4j</groupId>
 		<artifactId>parent</artifactId>
-		<version>0.4.1-SNAPSHOT</version>
+		<version>0.5.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>demo-cpp</artifactId>
@@ -26,11 +26,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
@@ -38,11 +33,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>com.googlecode.mavennatives</groupId>
-				<artifactId>maven-nativedependencies-plugin</artifactId>
-			</plugin>
-
 			<!-- Produce an OSGi manifest -->
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>

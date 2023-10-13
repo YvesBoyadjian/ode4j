@@ -470,7 +470,7 @@ class DemoHeightfield extends dsFunctions {
 				obj[i].geom[0] = dCreateTriMesh(space, new_tmdata, null, null, null);
 
 				dMassSetTrimesh( m, DENSITY, (DTriMesh)obj[i].geom[0] );
-				DVector3 c = m.getC().clone();
+				DVector3 c = m.getC().copy();
 				printf("mass at %f %f %f\n", c.get0(), c.get1(), c.get2());
 				//dGeomSetPosition(obj[i].geom[0], -m.c[0], -m.c[1], -m.c[2]);
 				//dMassTranslate(m, -m.c[0], -m.c[1], -m.c[2]);
@@ -584,7 +584,7 @@ class DemoHeightfield extends dsFunctions {
 //				}
 //
 //				// move all encapsulated objects so that the center of mass is (0,0,0)
-//				DVector3 c = m.getC().clone();
+//				DVector3 c = m.getC().copy();
 //				c.scale(-1);
 //				for (k=0; k<2; k++) {
 ////					dGeomSetPosition (g2[k],
@@ -847,7 +847,7 @@ class DemoHeightfield extends dsFunctions {
 						obj[i].last_matrix_index = 1;
 					
 					// Apply the 'other' matrix which is the oldest.
-					//TODO TZ
+					// -> not implemented for GIMPACT
 //					dGeomTriMeshSetLastTransform( obj[i].geom[j],
 //							new DoubleArray( obj[i].matrix_dblbuff, ( obj[i].last_matrix_index * 16 ) ) );
 				}
@@ -943,7 +943,7 @@ class DemoHeightfield extends dsFunctions {
 		dGeomSetPosition( gheight, pos.get0(), pos.get1(), pos.get2() );
 
 		// run simulation
-		dsSimulationLoop (args,352,288,this);
+		dsSimulationLoop (args,640,480,this);
 
 		dJointGroupDestroy (contactgroup);
 		dSpaceDestroy (space);

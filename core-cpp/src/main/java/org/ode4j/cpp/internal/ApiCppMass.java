@@ -182,7 +182,6 @@ public abstract class ApiCppMass extends ApiCppOdeInit {
 //		mass = m.mass;
 //		c = new dVector4(m.c);
 //		I = new dMatrix3(m.I);
-//		//TODO complete?
 //	}
 //
 //	@Override
@@ -199,4 +198,6 @@ public abstract class ApiCppMass extends ApiCppOdeInit {
 	//#endif
 	//
 	//#endif
+
+	protected ApiCppMass() {}
 }

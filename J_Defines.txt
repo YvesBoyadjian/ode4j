@@ -13,3 +13,7 @@ undefined:
 ==========
 _MSC_VER 
 dSINGLE
+
+
+./bootstrap
+./configure --enable-double-precision --with-trimesh=gimpact --enable-libccd

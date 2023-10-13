@@ -6,12 +6,12 @@
 	<!--
 	mvn clean
 	mvn compile
-	mvn deploy -Psonatype-oss-release
+	mvn release:xxx -Pode4j-release
 	-->
 
 	<groupId>org.ode4j</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.4.1-SNAPSHOT</version>
+	<version>0.5.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -24,33 +24,22 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<ode4j.bnd-maven-plugin.version>3.5.0</ode4j.bnd-maven-plugin.version>
-		<ode4j.build-helper-maven-plugin.version>3.0.0</ode4j.build-helper-maven-plugin.version>
-		<ode4j.maven-clean-plugin.version>3.0.0</ode4j.maven-clean-plugin.version>
-		<ode4j.maven-compiler-plugin.version>3.7.0</ode4j.maven-compiler-plugin.version>
-		<ode4j.maven-deploy-plugin.version>2.8.2</ode4j.maven-deploy-plugin.version>
-		<ode4j.maven-enforcer-plugin.version>3.0.0-M1</ode4j.maven-enforcer-plugin.version>
-		<ode4j.maven-gpg-plugin.version>1.6</ode4j.maven-gpg-plugin.version>
-		<ode4j.maven-install-plugin.version>2.5.2</ode4j.maven-install-plugin.version>
-		<ode4j.maven-jar-plugin.version>3.1.0</ode4j.maven-jar-plugin.version>
-		<ode4j.maven-javadoc-plugin.version>3.0.0-M1</ode4j.maven-javadoc-plugin.version>
-		<ode4j.maven-nativedependencies-plugin.version>0.0.7</ode4j.maven-nativedependencies-plugin.version>
-		<ode4j.maven-plugin-plugin.version>3.2</ode4j.maven-plugin-plugin.version>
-		<ode4j.maven-resources-plugin.version>3.0.0</ode4j.maven-resources-plugin.version>
-		<ode4j.maven-source-plugin.version>3.0.1</ode4j.maven-source-plugin.version>
-		<ode4j.maven-surefire-plugin.version>2.19.1</ode4j.maven-surefire-plugin.version>
-		<ode4j.nexus-staging-maven-plugin.version>1.6.8</ode4j.nexus-staging-maven-plugin.version>
+		<ode4j.bnd-maven-plugin.version>6.4.0</ode4j.bnd-maven-plugin.version>
+		<ode4j.build-helper-maven-plugin.version>3.3.0</ode4j.build-helper-maven-plugin.version>
+		<ode4j.maven-clean-plugin.version>3.2.0</ode4j.maven-clean-plugin.version>
+		<ode4j.maven-compiler-plugin.version>3.11.0</ode4j.maven-compiler-plugin.version>
+		<ode4j.maven-deploy-plugin.version>3.1.1</ode4j.maven-deploy-plugin.version>
+		<ode4j.maven-enforcer-plugin.version>3.3.0</ode4j.maven-enforcer-plugin.version>
+		<ode4j.maven-gpg-plugin.version>3.0.1</ode4j.maven-gpg-plugin.version>
+		<ode4j.maven-install-plugin.version>3.1.1</ode4j.maven-install-plugin.version>
+		<ode4j.maven-jar-plugin.version>3.3.0</ode4j.maven-jar-plugin.version>
+		<ode4j.maven-javadoc-plugin.version>3.5.0</ode4j.maven-javadoc-plugin.version>
+		<ode4j.maven-plugin-plugin.version>3.8.2</ode4j.maven-plugin-plugin.version>
+		<ode4j.maven-resources-plugin.version>3.3.1</ode4j.maven-resources-plugin.version>
+		<ode4j.maven-source-plugin.version>3.2.1</ode4j.maven-source-plugin.version>
+		<ode4j.maven-surefire-plugin.version>3.0.0</ode4j.maven-surefire-plugin.version>
+		<ode4j.nexus-staging-maven-plugin.version>1.6.13</ode4j.nexus-staging-maven-plugin.version>
 	</properties>
-
-	<prerequisites>
-		<maven>3.3.3</maven>
-	</prerequisites>
-
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
 
 	<name>ODE for Java</name>
 	<description>Java 3D Physics Engine and Library.</description>
@@ -68,7 +57,8 @@
 		<url>https://github.com/tzaeschke/ode4j</url>
 		<connection>scm:git:git@github.com:tzaeschke/ode4j.git</connection>
 		<developerConnection>scm:git:git@github.com:tzaeschke/ode4j.git</developerConnection>
-	</scm>
+	  <tag>HEAD</tag>
+  </scm>
 
 	<developers>
 		<developer>
@@ -83,39 +73,52 @@
 		<url>https://github.com/tzaeschke/ode4j/issues</url>
 	</issueManagement>
 
-	<repositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>sonatype-snapshots</id>-->
+<!--			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--			<releases>-->
+<!--				<enabled>false</enabled>-->
+<!--			</releases>-->
+<!--			<snapshots>-->
+<!--				<enabled>true</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
 		<repository>
-			<id>sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
-	</repositories>
+	</distributionManagement>
 
 	<!-- mvn versions:display-dependency-updates -->
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.lwjgl.lwjgl</groupId>
-				<artifactId>lwjgl_util</artifactId>
-				<version>2.9.3</version>
-			</dependency>
-
 			<!-- Note that this is upgraded in the on-jdk-9 profile below -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.0</version>
+				<version>2.0.7</version>
+			</dependency>
+
+			<!-- Include this globally for all tests -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>2.0.7</version>
+				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.13.1</version>
+				<version>4.13.2</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
@@ -161,6 +164,20 @@
 					<version>${ode4j.build-helper-maven-plugin.version}</version>
 				</plugin>
 
+				<!-- TZ: I added these only to avoid warnings during release:perform-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${ode4j.maven-javadoc-plugin.version}</version>
+				</plugin>
+
+				<!-- TZ: I added these only to avoid warnings during release:perform-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
+
 				<!--
 					Enforcer plugin.
 					https://maven.apache.org/enforcer/maven-enforcer-plugin/
@@ -170,6 +187,21 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-enforcer-plugin</artifactId>
 					<version>${ode4j.maven-enforcer-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>enforce-maven</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<version>3.3.9</version>
+									</requireMavenVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 
 				<!--
@@ -210,38 +242,20 @@
 				</plugin>
 
 				<plugin>
-					<!-- mvn nativedependencies:copy -->
-					<groupId>com.googlecode.mavennatives</groupId>
-					<artifactId>maven-nativedependencies-plugin</artifactId>
-					<version>${ode4j.maven-nativedependencies-plugin.version}</version>
-					<executions>
-						<execution>
-							<id>unpacknatives</id>
-							<phase>generate-resources</phase>
-							<goals>
-								<goal>copy</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-
-				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${ode4j.maven-surefire-plugin.version}</version>
 					<configuration>
 						<printSummary>true</printSummary>
 						<skipTests>false</skipTests>
+						<argLine>-DdDEBUG=true</argLine>
 						<includes>
 							<!-- include ALL tests -->
 							<include>**/*.java</include>
 						</includes>
 						<excludes>
 							<!-- exclude tests that currently fail -->
-							<exclude>**/tests/JavaMultiThreadTest.java</exclude>
-							<exclude>**/tests/bugs/Test_Bug0019_OdeRayToCylinder.java</exclude>
-							<exclude>**/tests/CollisionTest.java</exclude>
-							<exclude>**/tests/TestIssue0018_NpeInQuickstep.java</exclude>
+							<exclude>**/JavaMultiThreadTest.java</exclude>
 						</excludes>
 					</configuration>
 				</plugin>
@@ -262,7 +276,7 @@
 							Bundle-Name: ${project.name} ${project.version} - ${project.description}
 							Bundle-Description: ${project.description}
 							Bundle-SCM: ${project.scm.url}
-							Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=7.0))"
+							Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 ]]></bnd>
 					</configuration>
 				</plugin>
@@ -292,6 +306,21 @@
 						</execution>
 					</executions>
 				</plugin>
+
+				<!-- Check compatibility with: mvn animal-sniffer:check -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>animal-sniffer-maven-plugin</artifactId>
+					<version>1.22</version>
+					<configuration>
+						<signature>
+							<groupId>com.toasttab.android</groupId>
+							<artifactId>gummy-bears-api-24</artifactId>
+							<version>0.5.1</version>
+						</signature>
+					</configuration>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 
@@ -308,9 +337,9 @@
 						</goals>
 						<configuration>
 							<rules>
-								<!-- Require JDK 7+ -->
+								<!-- Require JDK 8+ -->
 								<requireJavaVersion>
-									<version>[1.7,)</version>
+									<version>[1.8,)</version>
 								</requireJavaVersion>
 							</rules>
 						</configuration>
@@ -319,7 +348,7 @@
 			</plugin>
 
 			<!--
-				Set the default source level to 1.7.
+				Set the default source level to 1.8.
 
 				This is overridden when running on JDK 9 and above (see the
 				on-jdk-9-plus profile).
@@ -327,8 +356,11 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArgs>
+						<arg>-Xlint</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 
@@ -353,6 +385,57 @@
 
 	<profiles>
 
+		<profile>
+			<id>ode4j-release</id>
+<!--			<modules>-->
+<!--				<module>core</module>-->
+<!--				<module>parent-pom</module>-->
+<!--			</modules>-->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<file>${file}.jar</file>
+									<keyname>${gpg.keyname}</keyname>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+		<id>on-jdk-8</id>
+		<activation>
+			<jdk>8</jdk>
+		</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<executions>
+							<execution>
+							<id>default-compile</id>
+							<configuration>
+								<source>1.8</source>
+								<target>1.8</target>
+								<compilerArgs>
+									<arg>-Xlint</arg>
+									<arg>-Werror</arg>
+								</compilerArgs>
+							</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 		<!--
 			A profile activated when the building JDK is >= JDK 9.
 		-->
@@ -363,15 +446,15 @@
 			</activation>
 
 			<!-- Upgrade SLF4J to a newer version for JDK 9 -->
-			<dependencyManagement>
-				<dependencies>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-						<version>1.8.0-beta1</version>
-					</dependency>
-				</dependencies>
-			</dependencyManagement>
+<!--			<dependencyManagement>-->
+<!--				<dependencies>-->
+<!--					<dependency>-->
+<!--						<groupId>org.slf4j</groupId>-->
+<!--						<artifactId>slf4j-api</artifactId>-->
+<!--						<version>2.0.7</version>-->
+<!--					</dependency>-->
+<!--				</dependencies>-->
+<!--			</dependencyManagement>-->
 
 			<build>
 				<plugins>
@@ -421,23 +504,24 @@
 								</configuration>
 							</execution>
 
-							<execution>
-								<id>base-compile</id>
-								<goals>
-									<goal>compile</goal>
-								</goals>
+<!--							TODO TZ: WHat is this good for? Remove in 0.6.0 ....?-->
+<!--							<execution>-->
+<!--								<id>base-compile</id>-->
+<!--								<goals>-->
+<!--									<goal>compile</goal>-->
+<!--								</goals>-->
 
-								<!-- Recompile everything for the target VM except the
-										 module-info.java -->
-								<configuration>
-									<excludes>
-										<exclude>module-info.java</exclude>
-									</excludes>
-									<release>7</release>
-									<source>7</source>
-									<target>7</target>
-								</configuration>
-							</execution>
+<!--								&lt;!&ndash; Recompile everything for the target VM except the-->
+<!--										 module-info.java &ndash;&gt;-->
+<!--								<configuration>-->
+<!--									<excludes>-->
+<!--										<exclude>module-info.java</exclude>-->
+<!--									</excludes>-->
+<!--									<release>8</release>-->
+<!--									<source>1.8</source>-->
+<!--									<target>1.8</target>-->
+<!--								</configuration>-->
+<!--							</execution>-->
 						</executions>
 					</plugin>
 				</plugins>
